@@ -21,21 +21,15 @@ Semantic occupancy perception is essential for autonomous driving, as automated 
 # Demo
 **Semantic Occupancy Annotations**
 
-
 https://user-images.githubusercontent.com/49095445/223448290-53732e07-9642-429c-9cc4-b8ca5a967956.mp4
-
 
 **Visualization of different baselines**
 
-
-https://user-images.githubusercontent.com/49095445/223448456-104a2fef-085f-4902-ab8b-f6eaf73c1d31.mp4
-
+https://user-images.githubusercontent.com/49095445/223449450-0a96ed5d-b35e-4d76-8737-fea02f99f113.mp4
 
 **Visualization of CONet**
 
-
 https://user-images.githubusercontent.com/49095445/223448374-6317a8d9-4eb8-4ef8-939e-ac52982149b4.mp4
-
 
 
 # Bibtex
