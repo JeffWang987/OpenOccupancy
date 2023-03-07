@@ -14,7 +14,7 @@ OpenOccupancy
 ```
 
 
-**2. Download the generated [train](TODO)/[val](TODO) pickle files and put them in data. Folder structure:**
+**2. Download the generated [train](TODO)/[val](https://github.com/JeffWang987/OpenOccupancy/releases/tag/val_pkl) pickle files and put them in data. Folder structure:**
 ```
 OpenOccupancy
 ├── data/
