@@ -28,12 +28,19 @@ https://user-images.githubusercontent.com/49095445/223448290-53732e07-9642-429c-
   
 https://user-images.githubusercontent.com/49095445/223449450-0a96ed5d-b35e-4d76-8737-fea02f99f113.mp4
   
+  
 </div>
 
 **Visualization of CONet**
 
 https://user-images.githubusercontent.com/49095445/223448374-6317a8d9-4eb8-4ef8-939e-ac52982149b4.mp4
 
+
+**Baseline framwork**
+![occupancy-baselines](https://user-images.githubusercontent.com/49095445/223452540-111a3d96-44ed-475f-a3c1-c033b36941c6.png)
+
+**Cascade-Occupancy-Network framwork**
+![occupancy-conet](https://user-images.githubusercontent.com/49095445/223452679-cb8fdd95-5102-4563-adda-ef3645d48353.png)
 
 # Bibtex
 If this work is helpful for your research, please consider citing the following BibTeX entry.
