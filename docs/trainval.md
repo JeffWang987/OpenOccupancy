@@ -30,9 +30,9 @@ bash run.sh ./projects/Cascade-Occupancy-Network/Multimodal-R50_img1600_cascade_
 ```
 
 # Evaluation
-**Eval multimodal CONet with 8 GPUs.**
+**Evaluation example.**
 ```
-bash run_eval.sh $PATH_TO_CFG $PATH_TO_CKPT 8
+bash run_eval.sh $PATH_TO_CFG $PATH_TO_CKPT $GPU_NUM
 ```
 
 # Visualization
