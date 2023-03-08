@@ -7,6 +7,7 @@
 
 Semantic occupancy perception is essential for autonomous driving, as automated vehicles require a fine-grained perception of the 3D urban structures. However, existing relevant benchmarks lack diversity in urban scenes, and they only evaluate front-view predictions. Towards a comprehensive benchmarking of surrounding perception algorithms, we propose OpenOccupancy, which is the first surrounding semantic occupancy perception benchmark. In the OpenOccupancy benchmark, we extend the large-scale nuScenes dataset with dense semantic occupancy annotations. Previous annotations rely on LiDAR points superimposition, where some occupancy labels are missed due to sparse LiDAR channels. To mitigate the problem, we introduce the Augmenting And Purifying (AAP) pipeline to ~2x densify the annotations, where ~4000 human hours are involved in the labeling process. Besides, camera-based, LiDAR-based and multi-modal baselines are established for the OpenOccupancy benchmark. Furthermore, considering the complexity of surrounding occupancy perception lies in the computational burden of high-resolution 3D predictions, we propose the Cascade Occupancy Network (CONet) to refine the coarse prediction, which relatively enhances the performance by ~30% than the baseline. We hope the OpenOccupancy benchmark will boost the development of surrounding occupancy perception algorithms.
 
+[arXiv](https://arxiv.org/abs/2303.03991) 
 
 # Getting Started
 
@@ -45,7 +46,11 @@ https://user-images.githubusercontent.com/49095445/223448374-6317a8d9-4eb8-4ef8-
 If this work is helpful for your research, please consider citing the following BibTeX entry.
 
 ```
-@article{todo
+@article{wang2023openoccupancy,
+      title={OpenOccupancy: A Large Scale Benchmark for Surrounding Semantic Occupancy Perception}, 
+      author={Xiaofeng Wang and Zheng Zhu and Wenbo Xu and Yunpeng Zhang and Yi Wei and Xu Chi and Yun Ye and Dalong Du and Jiwen Lu and Xingang Wang},
+      journal={arXiv preprint arXiv:2303.03991},
+      year={2023}
 }
 ```
 
