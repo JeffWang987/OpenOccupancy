@@ -72,7 +72,7 @@ OpenOccupancy
 | val             | 6,019 frames |
 | cameras         | 6 |
 | voxel size      | 0.2m |
-| range           | [-51.2, -51.2, -5m, 51.2, 51.2m, 3m]|
+| range           | [-51.2m, -51.2m, -5m, 51.2m, 51.2m, 3m]|
 | volume size     | [512, 512, 40]|
 | classes         | 0 - 16 (see bellow) |
   
