@@ -44,7 +44,7 @@ OpenOccupancy
 **3. Download and unzip our annotation for nuScenes-Occupancy:**
 | Subset | Google Drive <img src="https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png" alt="Google Drive" width="18"/> | Baidu Cloud <img src="https://nd-static.bdstatic.com/m-static/v20-main/favicon-main.ico" alt="Baidu Yun" width="18"/> | Size |
 | :---: | :---: | :---: | :---: |
-| trainval | [TODO]() | [link](https://pan.baidu.com/s/1BRRaxBCuVbEvz4cL0-I8hg) (code:BS95) | approx. 24G |
+| trainval | [link](https://drive.google.com/file/d/1qDu0dNI0sXUNnoIbHNLLuo6eLxnL_90Y/view?usp=share_link) | [link](https://pan.baidu.com/s/1BRRaxBCuVbEvz4cL0-I8hg) (code:BS95) | approx. 24G |
 
 We will release annotation (with more iterations of augmenting and purifying) in the future.
 ```
