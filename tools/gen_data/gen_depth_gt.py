@@ -6,16 +6,21 @@ import numpy as np
 from nuscenes.utils.data_classes import LidarPointCloud
 from nuscenes.utils.geometry_utils import view_points
 from pyquaternion import Quaternion
-
+import copy
 
 # https://github.com/nutonomy/nuscenes-devkit/blob/master/python-sdk/nuscenes/nuscenes.py#L834
 def map_pointcloud_to_image(
     pc,
     im,
-    lidar_calibrated_sensor,
-    lidar_ego_pose,
-    cam_calibrated_sensor,
-    cam_ego_pose,
+    lidar2ego_translation,
+    lidar2ego_rotation,
+    ego2global_translation,
+    ego2global_rotation,
+    sensor2ego_translation, 
+    sensor2ego_rotation,
+    cam_ego2global_translation,
+    cam_ego2global_rotation,
+    cam_intrinsic,
     min_dist: float = 0.0,
 ):
 
@@ -25,21 +30,21 @@ def map_pointcloud_to_image(
     # frame for the timestamp of the sweep.
 
     pc = LidarPointCloud(pc.T)
-    pc.rotate(Quaternion(lidar_calibrated_sensor['rotation']).rotation_matrix)
-    pc.translate(np.array(lidar_calibrated_sensor['translation']))
+    pc.rotate(Quaternion(lidar2ego_rotation).rotation_matrix)
+    pc.translate(np.array(lidar2ego_translation))
 
     # Second step: transform from ego to the global frame.
-    pc.rotate(Quaternion(lidar_ego_pose['rotation']).rotation_matrix)
-    pc.translate(np.array(lidar_ego_pose['translation']))
+    pc.rotate(Quaternion(ego2global_rotation).rotation_matrix)
+    pc.translate(np.array(ego2global_translation))
 
     # Third step: transform from global into the ego vehicle
     # frame for the timestamp of the image.
-    pc.translate(-np.array(cam_ego_pose['translation']))
-    pc.rotate(Quaternion(cam_ego_pose['rotation']).rotation_matrix.T)
+    pc.translate(-np.array(cam_ego2global_translation))
+    pc.rotate(Quaternion(cam_ego2global_rotation).rotation_matrix.T)
 
     # Fourth step: transform from ego into the camera.
-    pc.translate(-np.array(cam_calibrated_sensor['translation']))
-    pc.rotate(Quaternion(cam_calibrated_sensor['rotation']).rotation_matrix.T)
+    pc.translate(-np.array(sensor2ego_translation))
+    pc.rotate(Quaternion(sensor2ego_rotation).rotation_matrix.T)
 
     # Fifth step: actually take a "picture" of the point cloud.
     # Grab the depths (camera frame z axis points away from the camera).
@@ -49,7 +54,7 @@ def map_pointcloud_to_image(
     # Take the actual picture (matrix multiplication with camera-matrix
     # + renormalization).
     points = view_points(pc.points[:3, :],
-                         np.array(cam_calibrated_sensor['camera_intrinsic']),
+                         cam_intrinsic,
                          normalize=True)
 
     # Remove points that are either outside or behind the camera.
@@ -83,31 +88,45 @@ cam_keys = [
 
 
 def worker(info):
-    lidar_path = info['lidar_infos'][lidar_key]['filename']
-    points = np.fromfile(os.path.join(data_root, lidar_path),
+    lidar_path = info['lidar_path']
+    points = np.fromfile(lidar_path,
                          dtype=np.float32,
                          count=-1).reshape(-1, 5)[..., :4]
-    lidar_calibrated_sensor = info['lidar_infos'][lidar_key][
-        'calibrated_sensor']
-    lidar_ego_pose = info['lidar_infos'][lidar_key]['ego_pose']
+    
+    lidar2ego_translation = info['lidar2ego_translation']
+    lidar2ego_rotation = info['lidar2ego_rotation']
+    ego2global_translation = info['ego2global_translation']
+    ego2global_rotation = info['ego2global_rotation']
     for i, cam_key in enumerate(cam_keys):
-        cam_calibrated_sensor = info['cam_infos'][cam_key]['calibrated_sensor']
-        cam_ego_pose = info['cam_infos'][cam_key]['ego_pose']
+        sensor2ego_translation = info['cams'][cam_key]['sensor2ego_translation']
+        sensor2ego_rotation = info['cams'][cam_key]['sensor2ego_rotation']
+        cam_ego2global_translation = info['cams'][cam_key]['ego2global_translation']
+        cam_ego2global_rotation = info['cams'][cam_key]['ego2global_rotation']
+        cam_intrinsic = info['cams'][cam_key]['cam_intrinsic']
         img = mmcv.imread(
-            os.path.join(data_root, info['cam_infos'][cam_key]['filename']))
+            os.path.join(info['cams'][cam_key]['data_path']))
         pts_img, depth = map_pointcloud_to_image(
-            points.copy(), img, lidar_calibrated_sensor.copy(),
-            lidar_ego_pose.copy(), cam_calibrated_sensor, cam_ego_pose)
-        file_name = os.path.split(info['cam_infos'][cam_key]['filename'])[-1]
+            points.copy(), img, 
+            copy.deepcopy(lidar2ego_translation), 
+            copy.deepcopy(lidar2ego_rotation), 
+            copy.deepcopy(ego2global_translation),
+            copy.deepcopy(ego2global_rotation),
+            copy.deepcopy(sensor2ego_translation), 
+            copy.deepcopy(sensor2ego_rotation), 
+            copy.deepcopy(cam_ego2global_translation), 
+            copy.deepcopy(cam_ego2global_rotation),
+            copy.deepcopy(cam_intrinsic))
+        
+        file_name = os.path.split(info['cams'][cam_key]['data_path'])[-1]
         np.concatenate([pts_img[:2, :].T, depth[:, None]],
                        axis=1).astype(np.float32).flatten().tofile(
-                           os.path.join('data', 'depth_gt',
+                           os.path.join('./data', 'depth_gt',
                                         f'{file_name}.bin'))
 
 if __name__ == '__main__':
     po = Pool(12)
     mmcv.mkdir_or_exist(os.path.join('./data', 'depth_gt'))
-    infos = mmcv.load(info_path_train)
+    infos = mmcv.load(info_path_train)['infos']
     for info in infos:
         po.apply_async(func=worker, args=(info, ))
     po.close()
