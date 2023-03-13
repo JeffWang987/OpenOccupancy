@@ -50,7 +50,7 @@ We will release annotation (with more iterations of augmenting and purifying) in
 ```
 mv nuScenes-Occupancy-v0.0.7z ./data
 cd ./data
-7za e nuScenes-Occupancy-v0.0.7z
+7za x nuScenes-Occupancy-v0.0.7z
 ```
 **Folder structure:**
 ```
