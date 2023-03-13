@@ -132,7 +132,7 @@ if __name__ == '__main__':
     po.close()
     po.join()
 
-    infos = mmcv.load(info_path_val)
+    infos = mmcv.load(info_path_val)['infos']
     for info in infos:
         po.apply_async(func=worker, args=(info, ))
     po.close()
