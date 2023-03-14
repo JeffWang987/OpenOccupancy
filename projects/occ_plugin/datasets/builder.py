@@ -70,7 +70,6 @@ def build_dataloader(dataset,
         batch_size = samples_per_gpu
         num_workers = workers_per_gpu
     else:
-        # assert False, 'not support in bevformer'
         print('WARNING!!!!, Only can be used for obtain inference speed!!!!')
         sampler = GroupSampler(dataset, samples_per_gpu) if shuffle else None
         batch_size = num_gpus * samples_per_gpu

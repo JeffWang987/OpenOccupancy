@@ -346,7 +346,9 @@ class OccNet(BEVDepth):
         
         return output
     
-
+    def forward_temp(**kwargs):
+        return None
+    
 def fast_hist(pred, label, max_label=18):
     pred = copy.deepcopy(pred.flatten())
     label = copy.deepcopy(label.flatten())
