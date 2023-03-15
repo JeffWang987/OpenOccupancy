@@ -7,8 +7,27 @@ import os.path as osp
 import torch.distributed as dist
 from mmcv.runner import DistEvalHook as BaseDistEvalHook
 from torch.nn.modules.batchnorm import _BatchNorm
+from mmcv.runner import EvalHook as BaseEvalHook
 
 
+class OccEvalHook(BaseEvalHook):
+    def __init__(self, *args,  **kwargs):
+        super(OccEvalHook, self).__init__(*args, **kwargs)  
+            
+    def _do_evaluate(self, runner):
+        """perform evaluation and save ckpt."""
+        if not self._should_evaluate(runner):
+            return
+
+        from projects.occ_plugin.occupancy.apis.test import custom_single_gpu_test
+        results = custom_single_gpu_test(runner.model, self.dataloader, show=False)
+        
+        runner.log_buffer.output['eval_iter_num'] = len(self.dataloader)
+        key_score = self.evaluate(runner, results)
+        if self.save_best:
+            self._save_ckpt(runner, key_score)
+            
+            
 class OccDistEvalHook(BaseDistEvalHook):
     def __init__(self, *args,  **kwargs):
         super(OccDistEvalHook, self).__init__(*args, **kwargs)       

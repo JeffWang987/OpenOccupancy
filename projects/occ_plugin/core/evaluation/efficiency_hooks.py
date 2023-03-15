@@ -43,7 +43,6 @@ class OccEfficiencyHook(Hook):
         if hasattr(model, 'module'):
             model = model.module
         if hasattr(model, 'forward_dummy') and hasattr(model, 'forward_temp'):
-            model.forward_temp = model.forward_train
             model.forward_train = model.forward_dummy
             model.forward_test = model.forward_dummy
             model.eval()
