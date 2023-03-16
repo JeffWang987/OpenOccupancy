@@ -89,9 +89,7 @@ def custom_single_gpu_test(model, data_loader, show=False, out_dir=None, show_sc
             print(format_SSC_results(mean_ious))
         
 
-        batch_size = len(result)
-        for _ in range(batch_size):
-            prog_bar.update()
+        prog_bar.update()
 
 
     res = {

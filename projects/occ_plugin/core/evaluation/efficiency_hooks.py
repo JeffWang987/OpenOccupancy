@@ -42,7 +42,7 @@ class OccEfficiencyHook(Hook):
         model = copy.deepcopy(runner.model)
         if hasattr(model, 'module'):
             model = model.module
-        if hasattr(model, 'forward_dummy') and hasattr(model, 'forward_temp'):
+        if hasattr(model, 'forward_dummy'):
             model.forward_train = model.forward_dummy
             model.forward_test = model.forward_dummy
             model.eval()
