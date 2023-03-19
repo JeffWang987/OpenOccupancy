@@ -2,6 +2,7 @@
 *.pth
 projects/configs/dev
 run2.sh
+run_a100.sh
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

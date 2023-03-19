@@ -53,7 +53,7 @@ model = dict(
         input_channel=4,
         base_channel=16,
         out_channel=numC_Trans,
-        norm_cfg=dict(type='GN', num_groups=16, requires_grad=True),
+        norm_cfg=dict(type='SyncBN', requires_grad=True),
         sparse_shape_xyz=[1024, 1024, 80],  # hardcode, xy size follow centerpoint
         ),
     occ_encoder_backbone=dict(
@@ -62,17 +62,18 @@ model = dict(
         n_input_channels=numC_Trans,
         block_inplanes=voxel_channels,
         out_indices=voxel_out_indices,
-        norm_cfg=dict(type='GN', num_groups=16, requires_grad=True),
+        norm_cfg=dict(type='SyncBN', requires_grad=True),
     ),
     occ_encoder_neck=dict(
         type='FPN3D',
         with_cp=True,
         in_channels=voxel_channels,
         out_channels=voxel_out_channel,
-        norm_cfg=dict(type='GN', num_groups=16, requires_grad=True),
+        norm_cfg=dict(type='SyncBN', requires_grad=True),
     ),
     pts_bbox_head=dict(
         type='OccHead',
+        norm_cfg=dict(type='SyncBN', requires_grad=True),
         soft_weights=True,
         cascade_ratio=cascade_ratio,
         sample_from_voxel=sample_from_voxel,
