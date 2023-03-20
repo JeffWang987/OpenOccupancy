@@ -44,13 +44,23 @@ OpenOccupancy
 **3. Download and unzip our annotation for nuScenes-Occupancy:**
 | Subset | Google Drive <img src="https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png" alt="Google Drive" width="18"/> | Baidu Cloud <img src="https://nd-static.bdstatic.com/m-static/v20-main/favicon-main.ico" alt="Baidu Yun" width="18"/> | Size |
 | :---: | :---: | :---: | :---: |
-| trainval | [link](https://drive.google.com/file/d/1qDu0dNI0sXUNnoIbHNLLuo6eLxnL_90Y/view?usp=share_link) | [link](https://pan.baidu.com/s/1BRRaxBCuVbEvz4cL0-I8hg) (code:BS95) | approx. 24G |
+| ~~trainval-v0.0~~(deprecated) | [~~link~~](https://drive.google.com/file/d/1qDu0dNI0sXUNnoIbHNLLuo6eLxnL_90Y/view?usp=share_link) | [~~link~~](https://pan.baidu.com/s/1BRRaxBCuVbEvz4cL0-I8hg) (code:BS95) | approx. 24G |
+
+**Note that the v0.0 version is deprecated, and we release the v0.1 version, new features:**
+- Less occupancy noises, especially the artifacts caused by moving objects.
+- More lightweight (V0.0: 24GB-before unzip, 270GB-after unzip. V0.1: 5GB-before unzip, 130GB-after unzip).
+- Impreoved performance: v0.1 pretrained models enhance the mIoU by ~0.3 (compared to v0.0 pretrained models).
+
+| Subset | Google Drive <img src="https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png" alt="Google Drive" width="18"/> | Baidu Cloud <img src="https://nd-static.bdstatic.com/m-static/v20-main/favicon-main.ico" alt="Baidu Yun" width="18"/> | Size |
+| :---: | :---: | :---: | :---: |
+| trainval-v0.1 | [link](https://drive.google.com/file/d/1vTbgddMzUN6nLyWSsCZMb9KwihS7nPoH/view?usp=sharing) | [link](https://pan.baidu.com/s/1Wu1EYa7vrh8KS8VPTIny5Q) (code:25ue) | approx. 5G |
 
 We will release annotation (with more iterations of augmenting and purifying) in the future.
 ```
-mv nuScenes-Occupancy-v0.0.7z ./data
+mv nuScenes-Occupancy-v0.1.7z ./data
 cd ./data
-7za x nuScenes-Occupancy-v0.0.7z
+7za x nuScenes-Occupancy-v0.1.7z
+mv nuScenes-Occupancy-v0.1 nuScenes-Occupancy
 ```
 **Folder structure:**
 ```
