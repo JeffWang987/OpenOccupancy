@@ -239,7 +239,7 @@ data = dict(
 
 optimizer = dict(
     type='AdamW',
-    lr=2e-4,
+    lr=3e-4,
     paramwise_cfg=dict(
         custom_keys={
             'img_backbone': dict(lr_mult=0.1),
@@ -255,10 +255,15 @@ lr_config = dict(
     warmup_ratio=1.0 / 3,
     min_lr_ratio=1e-3)
 
-runner = dict(type='EpochBasedRunner', max_epochs=24)
+runner = dict(type='EpochBasedRunner', max_epochs=15)
 evaluation = dict(
     interval=1,
     pipeline=test_pipeline,
     save_best='SSC_mean',
     rule='greater',
 )
+
+# custom_hooks = [
+#     dict(type='OccEfficiencyHook'),
+# ]
+

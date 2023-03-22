@@ -14,6 +14,7 @@ Semantic occupancy perception is essential for autonomous driving, as automated 
 # News
 - **[2023/03/19]** We have updated model configs (using syncbn enhances the performance).
 - **[2023/03/20]** We have released annotation v0.1 (more lightweght and less artifacts). Check [Prepare Dataset](docs/prepare_data.md) for more details.
+- **[2023/03/22]** The pretrained models and logs are available (see [Assets](docs/assets.md)).
 
 
 # Getting Started

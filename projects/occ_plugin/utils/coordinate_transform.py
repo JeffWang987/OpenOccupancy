@@ -1,7 +1,7 @@
 
 import torch
 
-def coarse_to_fine_coordinates(coarse_cor, ratio, topk=100000):
+def coarse_to_fine_coordinates(coarse_cor, ratio, topk=30000):
     """
     Args:
         coarse_cor (torch.Tensor): [3, N]"""
