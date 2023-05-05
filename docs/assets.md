@@ -12,3 +12,4 @@
 | LiDAR-based CONet | [link](https://pan.baidu.com/s/1E3lh7_hkqHcovhohuejUYg) (code:hnaf)| [link](https://pan.baidu.com/s/1ddNEGGhCK2biXeqOW0Buqg) (code:hqto) | train on 8 RTX3090|
 | Multimodal CONet | [link](https://pan.baidu.com/s/1iWoZfzs12nvwoX-Ytcizvg) (code:k9p9)| [link](https://pan.baidu.com/s/1scMVRl0qmVoIB-fFI2tGMQ) (code:t7c5)| train on 8 A100|
 
+Google Drive [link](https://drive.google.com/file/d/1rqzMy0GDsvTXNMh4Zk2WsPBFXd0jobH0/view?usp=sharing)
