@@ -55,10 +55,10 @@ If this work is helpful for your research, please consider citing the following 
 
 ```
 @article{wang2023openoccupancy,
-      title={OpenOccupancy: A Large Scale Benchmark for Surrounding Semantic Occupancy Perception}, 
-      author={Xiaofeng Wang and Zheng Zhu and Wenbo Xu and Yunpeng Zhang and Yi Wei and Xu Chi and Yun Ye and Dalong Du and Jiwen Lu and Xingang Wang},
-      journal={arXiv preprint arXiv:2303.03991},
-      year={2023}
+  title={Openoccupancy: A large scale benchmark for surrounding semantic occupancy perception},
+  author={Wang, Xiaofeng and Zhu, Zheng and Xu, Wenbo and Zhang, Yunpeng and Wei, Yi and Chi, Xu and Ye, Yun and Du, Dalong and Lu, Jiwen and Wang, Xingang},
+  journal={arXiv preprint arXiv:2303.03991},
+  year={2023}
 }
 ```
 
